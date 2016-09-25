@@ -1,0 +1,2 @@
+# lgn-ssvep
+Modelling the Lateral Geniculate Nucleus with 3 cell populations consisting of Izhikevich neuron models. The extrinsic input is assumed to be from retinal spiking neurons when stimulated with trains of spike at a constant frequency. The output will simulate a Local Field Potential signal, which is the average membrane potential of a tightly packed neuronal population in around 0.3 sq mm of neuronal tissue.
