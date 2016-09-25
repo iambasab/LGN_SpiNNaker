@@ -1,0 +1,63 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Basabdatta Sen Bhattacharya}
+\title{Tables for SysManCyber}
+\begin{document}
+Log on the 16th September:\\
+Periodic train of spikes at 3 Hz is provided to both TCR and IN. The simulation is run for a total of 10 seconds at a resolution of 1 msec (the 10 second scaling up from .spynnaker.cfg is removed for this simulation). The total number of neurons in this population is 100 with a 5:1:4 ratio of the thalamic cells i.e. TCR:IN:TRN respectively.
+
+The input to the TCR is provided at a time delay from that of the IN with a goal to observe the indirect effect on the TCR when receiving inhibitory feed-forward signals from the TRN. The time of application of the input stimulus to the TCR and IN are as below:\\
+TCR: 1500 to 8000 msec; \, IN: 400 to 5000 msec
+
+General observation is that the model output follows the input frequency of the periodic train over the tested range.
+\section{For first set of simulation}
+\label{sec:1}
+At first, we concentrate on two particular connectivity probabilities in the network viz.\ the inhibitory feed-forward connections from the IN and TRN to the TCR populations. Experimental literature shows that the total number of synaptic input on a certain dendritic site of the TCR neuron receives 30.9\% of inputs from GABAergic cells; however it is not been able to distinguish between inputs from the IN and the TRN. Thus, we vary these two parameters randomly for a total of 5 sets of values such that the total probabilty sums to $\approx$ 31\%. The five sets of values are mentioned in the Table~\ref{tab:2}, while all other connectivities are mentioned in Table~\ref{tab:1}. For each set of values, twenty simulations for each input frequency setting are carried out with the connectivity as mentioned in the table below:
+\begin{table}
+\begin{tabular}{||l|c|c|c|c||}
+\hline \\
+From & To & Pconn (\%) & Wconn & Delay (msec) \\
+\hline \hline \\
+Source & TCR & 0.07 & 6 & 5\\
+Source & IN & 0.47 & 2 & 5 \\
+TCR & TRN & 0.35 & 4 & 3 \\
+TRN & TCR & 0.07 & 2 & 3 \\
+TRN & TRN & 0.15 & 2 & 1 \\
+IN & TCR & 0.24 & 4 & 2 \\
+IN & IN & 0.24 & 2 & 1 \\
+\hline \hline
+\end{tabular}
+\label{tab:1}
+\end{table}
+
+\begin{table}
+\begin{tabular}{||l|c|c|c|c||}
+\hline \\
+Simulation No & 1 & 2 & 3 & 4 & 5 \\
+\hline \\
+\mbox{TRN to TCR} ($P_1$) & 0.07 & 0.11 & 0.15 & 0.2 & 0.24 \\
+\mbox{IN to TCR} ($P_2$)  & 0.24 & 0.2 & 0.16 & 0.11 & 0.07 \\
+\hline
+\end{tabular}
+\label{tab:2}
+\end{table}
+
+\subsection{Input frequency 3 Hz}
+\label{sec:11}
+There is a distinct effect of the IN on the output, and this is existent in the TCR even prior to its receiving external input. As apparent from the time of application from the inputs mentioned above, the IN first receives the external input and starts spiking, which provides feed-forward input to the TCR, and produces an IPSP in the latter. However, on removal of the input spike to the IN at 5 sec, the IPSPs in the TCR output disappear.
+\subsection{Input frequency 23 Hz}
+\label{sec:12}
+All observations in Sec.~\ref{sec:11} hold except that the IPSPs corresponding to the IN are not observed in the TCR output once it starts receiving external inputs from the retina.
+
+\section{For second set of simulation}
+\label{sec:2}
+The 
+
+
+
+\end{document}
