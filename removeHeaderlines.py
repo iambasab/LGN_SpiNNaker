@@ -26,11 +26,16 @@ while loop < 1:
     loop = loop+1
     print loop
     
+    n= 1  #input('enter number of simulation')
+    f= 8   #input('enter frequency of simulation')
+    foldername="Sim%d_%dhz_0916" % (n,f)
+    
+    outfolderpath=('exp%dhz/Sim%d' %(f,n))
     ######################################
     ######################################
     ######------------THALAMIC RELAY NEURONS-----------------
     # Opening original data file.
-    infile = open('./Sim1_3hz_0916/TCRmempot_'+`loop`+'.dat', "r")
+    infile = open('./'+foldername+'/TCRmempot_'+`loop`+'.dat', "r")
 
     # Storing lines in file in a list
     lines = infile.readlines()
@@ -39,7 +44,8 @@ while loop < 1:
     infile.close()
 
     # Creating output file...
-    with open('./matlabFiles/SysManCyberB_Sep16/PeriodicSpikeTrain/exp3hz/Sim1/TCRmempot_'+`loop`+'.dat', "w") as outfile:
+    with open('./'+foldername+'/TCRmempot_'+`loop`+'.dat', "w") as outfile:
+    #with open('./matlabFiles/SysManCyberB_Sep16/PeriodicSpikeTrain/'+outfolderpath+'/TCRmempot_'+`loop`+'.dat', "w") as outfile:
         # Writing to output file all data except headers.
         for i in range(num_header_lines, len(lines)):
             outfile.write(lines[i])
@@ -52,7 +58,7 @@ while loop < 1:
     ######################################
     ######------------INTERNEURONS-----------------
     # Opening original data file.
-    infile = open('./Sim1_3hz_0916/INmempot_'+`loop`+'.dat', "r")
+    infile = open('./'+foldername+'/INmempot_'+`loop`+'.dat', "r")
 
     # Storing lines in file in a list
     lines = infile.readlines()
@@ -61,7 +67,8 @@ while loop < 1:
     infile.close()
 
     # Creating output file...
-    with open('./matlabFiles/SysManCyberB_Sep16/PeriodicSpikeTrain/exp3hz/Sim1/INmempot_'+`loop`+'.dat', "w") as outfile:
+    with open('./'+foldername+'/INmempot_'+`loop`+'.dat', "w") as outfile:
+    #with open('./matlabFiles/SysManCyberB_Sep16/PeriodicSpikeTrain/'+outfolderpath+'/INmempot_'+`loop`+'.dat', "w") as outfile:
         # Writing to output file all data except headers.
         for i in range(num_header_lines, len(lines)):
             outfile.write(lines[i])
@@ -74,7 +81,7 @@ while loop < 1:
     # ######################################
     # ######------------THALAMIC RETICULAR NUCLEUS-----------------
     # Opening original data file.
-    infile = open('./Sim1_3hz_0916/TRNmempot_'+`loop`+'.dat', "r")
+    infile = open('./'+foldername+'/TRNmempot_'+`loop`+'.dat', "r")
 
     # Storing lines in file in a list
     lines = infile.readlines()
@@ -83,7 +90,8 @@ while loop < 1:
     infile.close()
 
     # Creating output file...
-    with open('./matlabFiles/SysManCyberB_Sep16/PeriodicSpikeTrain/exp3hz/Sim1/TRNmempot_'+`loop`+'.dat', "w") as outfile:
+    with open('./'+foldername+'/TRNmempot_'+`loop`+'.dat', "w") as outfile:
+    #with open('./matlabFiles/SysManCyberB_Sep16/PeriodicSpikeTrain/'+outfolderpath+'/TRNmempot_'+`loop`+'.dat', "w") as outfile:
         # Writing to output file all data except headers.
         for i in range(num_header_lines, len(lines)):
             outfile.write(lines[i])

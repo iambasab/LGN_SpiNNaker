@@ -34,8 +34,8 @@ scale_fact=10;
 trnpop=4*scale_fact;
 
 
-TotalDuration=2000; % Total duration of simulation is 1000 msec
-TimeInt=10; %%Samplint time is 0.1 millisecond
+TotalDuration=10000; % Total duration of simulation is 1000 msec
+TimeInt=1/0.1; %%Samplint time is 0.1 millisecond
 TotalTimeSteps = TotalDuration * TimeInt; %Total time steps is 10000
 
 
@@ -47,20 +47,25 @@ TotalTimeSteps = TotalDuration * TimeInt; %Total time steps is 10000
 
 
 locut=100; 
-hicut=19900; 
+hicut=99900; 
 
 % current_neuronpop=tcrpop;
 % current_neuronpop=inpop;    
 current_neuronpop=trnpop;
 
 
-display ('Simulation 3 Hz')
+
+display ('Simulation 8 Hz')
+f=8; n=1;
 for loop=1:1
    
     
 %     filename=sprintf('./SysManCyberB_Sep16/PeriodicSpikeTrain/exp3hz/Sim1/TCRmempot_%d.dat',loop);
 %         filename=sprintf('./SysManCyberB_Sep16/PeriodicSpikeTrain/exp3hz/Sim1/INmempot_%d.dat',loop);
-        filename=sprintf('./SysManCyberB_Sep16/PeriodicSpikeTrain/exp3hz/Sim1/TRNmempot_%d.dat',loop);
+%         filename=sprintf('./SysManCyberB_Sep16/PeriodicSpikeTrain/exp3hz/Sim1/TRNmempot_%d.dat',loop);
+%   filename=sprintf('../Sim%d_%dhz_0916/TCRmempot_%d.dat',n,f,loop); 
+% filename=sprintf('../Sim%d_%dhz_0916/INmempot_%d.dat',n,f,loop);
+filename=sprintf('../Sim%d_%dhz_0916/TRNmempot_%d.dat',n,f,loop);
     
     fid = fopen(filename);
     neuron_par = textscan(fid, '%f %f %f'); %% for the rest of the files,
@@ -97,8 +102,8 @@ for loop=1:1
 %     figure,imagesc(locut(len):hicut(len),1:current_neuronpop,mempot1(1:current_neuronpop,locut(len):hicut(len)))
 end
 meanM=mean(M,1);
-figure, plot(locut:hicut,M(:,locut:hicut))
-hold on, plot(locut:hicut,meanM(1,locut:hicut),'--r','linewidth',0.5)
+figure, plot(locut:TimeInt:hicut,M(:,locut:TimeInt:hicut))
+hold on, plot(locut:TimeInt:hicut,meanM(1,locut:TimeInt:hicut),'--r','linewidth',0.5)
 
 Fs = 1000;
 N   = 10;  % Order
