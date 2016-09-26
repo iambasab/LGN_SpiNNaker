@@ -1,7 +1,7 @@
-function [fr vismat]=fun_stft(Vm, Fc1, Fc2)
+function [fr, vismat]=fun_stft(Vm, Fc1, Fc2)
  
         fs=1000;
-        N   = 2;  % Order
+        N   = 10;  % Order
         h  = fdesign.bandpass('N,F3dB1,F3dB2', N, Fc1, Fc2, fs);
         Hd = design(h, 'butter');
         
@@ -11,10 +11,10 @@ function [fr vismat]=fun_stft(Vm, Fc1, Fc2)
               
         %% STFT
         
-        time_window_len=500;%% 
+        time_window_len=1000;%% 
         slider_span=0.50*time_window_len; %% window is slided by 125___ elements which is every 125___ millisecond 
         x=size(Data);
-        no_of_windows = round(x(2)/slider_span);
+%         no_of_windows = round(x(2)/slider_span);
         nfft=4*fs;
         xind = ceil(x(2)/slider_span);
         yind = (nfft/2)+1;

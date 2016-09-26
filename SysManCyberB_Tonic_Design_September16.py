@@ -68,15 +68,15 @@ p2=[0.07, 0.11, 0.15, 0.2, 0.25]
 
 
 
-TotalDuration=10000
+TotalDuration=2000
 TimeInt=1
 loop=0
-while loop<20:
+while loop<1:
     print ('WE ARE IN LOOP:\n')
     print loop
     
     
-    p.setup(timestep=1.0, min_delay=1.0, max_delay=90.0)
+    p.setup(timestep=0.1, min_delay=1.0, max_delay=14.0)
     loop += 1
     # Tonic mode parameters
     tcr_a_tonic = 0.02
@@ -150,7 +150,7 @@ while loop<20:
                        }
 
     '''DEFINING THE POPULATIONS'''
-    p.set_number_of_neurons_per_core("IZK_curr_exp", 100)
+    p.set_number_of_neurons_per_core("IZK_curr_exp", 80)
     scale_fact = 10
     NumCellsTCR = 5*scale_fact
     NumCellsIN = 1*scale_fact
@@ -161,18 +161,18 @@ while loop<20:
 
 
 
-    ''' PERIODIC SPIKE TRAIN INPUT: 23Hz: 44msec isi; 19 Hz: 52 msec isi; 15 Hz:67 msec isi; 11Hz: 91 msec isi; 8 Hz: 125 msec isi; 4.5 Hz: 223 msec isi; 3 Hz: 333msec isi'''
+    ''' PERIODIC SPIKE TRAIN INPUT: 23Hz: 44msec isi; 19.2 Hz: 52 msec isi; 15 Hz:67 msec isi; 11Hz: 91 msec isi; 8 Hz: 125 msec isi; 4.5 Hz: 223 msec isi; 3 Hz: 333msec isi'''
 
-    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourceArray, {'spike_times': [i for i in range(1500,8000,333)]}, label='spike_source_ex')
+    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourceArray, {'spike_times': [i for i in range(150,1800,44)]}, label='spike_source_ex')
     
     
-    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(400,5000,333)]}, label='spike_source_inh')
+    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(40,1500,44)]}, label='spike_source_inh')
 
 
     ''' A-PERIODIC SPIKE TRAIN INPUT'''
 #    Rate_Inp = 3
-#    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourcePoisson, {'rate':Rate_Inp, 'duration':840,'start':150}, label='spike_source_ex')
-#    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourcePoisson, {'rate': Rate_Inp, 'duration':250,'start':250}, label='spike_source_inh')
+#    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourcePoisson, {'rate':Rate_Inp, 'duration':6500,'start':1500}, label='spike_source_ex')
+#    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourcePoisson, {'rate': Rate_Inp, 'duration':4600,'start':400}, label='spike_source_inh')
 
 
     # DEFINING THE PROJECTION AND WEIGHT PARAMETERS
@@ -197,7 +197,7 @@ while loop<20:
     projList.append(Proj2)
     
     '''TRN2TCR''' 
-    Proj3 = p.Projection(TRN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.15, weights=2, delays=3), target='inhibitory')
+    Proj3 = p.Projection(TRN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.07, weights=2, delays=3), target='inhibitory')
     projList.append(Proj3)
     
     '''TRN2TRN'''
@@ -206,7 +206,7 @@ while loop<20:
 
 
     '''IN2TCR'''
-    Proj5 = p.Projection(IN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.16, weights=4, delays=2), target='inhibitory')
+    Proj5 = p.Projection(IN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.24, weights=4, delays=2), target='inhibitory')
     projList.append(Proj5)
     
     '''IN2IN'''
@@ -238,14 +238,14 @@ while loop<20:
 
 
     print ('SAVING THE FILES')
-    TCR_pop.print_v('./Sim3_3hz_0916/TCRmempot_'+`loop`+'.dat')
-    IN_pop.print_v('./Sim3_3hz_0916/INmempot_'+`loop`+'.dat')
-    TRN_pop.print_v('./Sim3_3hz_0916/TRNmempot_'+`loop`+'.dat')
-    spike_source_ex.printSpikes('./Sim3_3hz_0916/spikesource_ex_'+`loop`+'.dat')
-    spike_source_inh.printSpikes('./Sim3_3hz_0916/spikesource_inh_'+`loop`+'.dat')
-    TCR_pop.printSpikes('./Sim3_3hz_0916/TCRspikes_'+`loop`+'.dat')
-    IN_pop.printSpikes('./Sim3_3hz_0916/INspikes_'+`loop`+'.dat')
-    TRN_pop.printSpikes('./Sim3_3hz_0916/TRNspikes_'+`loop`+'.dat')
+    TCR_pop.print_v('./Sim1_3hz_0916/TCRmempot_'+`loop`+'.dat')
+    IN_pop.print_v('./Sim1_3hz_0916/INmempot_'+`loop`+'.dat')
+    TRN_pop.print_v('./Sim1_3hz_0916/TRNmempot_'+`loop`+'.dat')
+    spike_source_ex.printSpikes('./Sim1_3hz_0916/spikesource_ex_'+`loop`+'.dat')
+    spike_source_inh.printSpikes('./Sim1_3hz_0916/spikesource_inh_'+`loop`+'.dat')
+    TCR_pop.printSpikes('./Sim1_3hz_0916/TCRspikes_'+`loop`+'.dat')
+    IN_pop.printSpikes('./Sim1_3hz_0916/INspikes_'+`loop`+'.dat')
+    TRN_pop.printSpikes('./Sim1_3hz_0916/TRNspikes_'+`loop`+'.dat')
     print('SAVED THE FILES \n \n \n')
     
 
