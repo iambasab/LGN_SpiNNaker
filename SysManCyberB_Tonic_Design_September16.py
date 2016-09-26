@@ -1,56 +1,5 @@
 """
-12th - 16th september: 
-Trying to record the projections using .getweights - and finally succeeded today with help from Loci - 
-Have saved the files with the periodic inputs and revised earlier work. Need to look into comparison with Poisson spike trains now.
 
-
-9th September: running using spalloc from it 302
-
-19th August: Passing this on to Loci for creaing multiple instances of the main code
-modelling the Lateral Geniculate Nucleus (LGN)
-LOG: Basab
-
-5th July: running results with possion (aperiodic) spike trains but at same frequencies as with periodic spike trains.
-3rd -4th July - running and storing results with regular spike trains at frequencies 23Hz, 19Hz, 15Hz, 11Hz, 8Hz, 4.5Hz, 3.2Hz. The 19Hz frequency
-was particularly used at first, to test the several range of parameters, especially varying p1 and p2 (see below for definition) for all 5 combinations
-(see at the beginning of the code). Also, a set of Simxa folders contain data when the TRN to TCR feedback connectivity weight was increased to 4.
-This was just to test with the set basal value of 2 (as a result of prior experiments on the spiking behaviours). As before, we note that with all other
-parameter values as they are, increasing TRN to TCR feedback from 2 to 4 resulted in erratic response from TCR, which intuitively (needs lots of more simulations
-to make a statement, and also with a large number of neurons) feels like due to the increased suppression of spiking neurons in the TCR population,
-considering the connectivity is also sparse.
-30th June - After some initial hiccups, finally could assimilate the data for p1 and p2, and store in Sim 1. But only one instance out of 5 was
-'successful' in the sense that the means of the neurons responded till the end.
-Now, the values of
-29th JUne - running the population network: with both p1 and p2 (probability of connection of TRN And IN respectively, to TCR, to 0.15
-11th June: Testing with Single neurons in the circuit.
-6th June -  Retested the tonic mode. The offset current values, when there are no synaptic weights, produce fast spking and regular spiking effects with the defined values of abcd parameters.
-However, this offset current cannot be negated.
-On the other hand, with offset 0, the synaptic weights, there is a conductance based current weighted with the synapses (refer to Andrew's mail) that causes spiking
-in the cells, but the effects of fast spiking and regular spiking are not apparent. Unless of course tested with high frequency input spike train. The FS firing can
-reproduce a higher frequency at the output that can the RS cells.
-1st June 2016: Pape and McCormick 95 - need to determine the ISI.
-
-31st January 2016: The Bursting experiment upto the single mini-column is done - so starting the tonic testing now.
-So the first thing to do is change the range of i to (2,3)
-
-24TH JANUARY 2016: FINALISED THE VISUALISATION AT THE END OF THE FILE FOR GENERATING AND SAVING FIGURES 1, 2 AND 3 IN THE PAPER DRAFT
-FOR SUBMISSION TO IEEE TRANSACTIONS IN BIOMEDICAL CIRCUITS AND SYSTEMS
-THE THREE CONDITIONS ARE:
-(1) TONIC BURSTING FOR ALL CELLS WHEN SPIKE SOURCE IS EXCITATORY FOR ALL CELLS, AND WITH MINIMAL ISI TO ELICIT ONE-TO-ONE RESPONSE IN THE CELLS.
-THE CONNECTION WEIGHTS ARE SET AS 1.
-(2) SAME SPIKE SOURCE INTERVAL, BUT NOW THE PROJECTED SPIKE TO ALL CELLS IS INHIBITORY. THE CONNECTION WEIGHTS ARE INCREASED TO 10.
-(3) THE SPIKE SOURCE PROJECTION IS STILL INHIBITORY, CONNECTION WEIGHT IS INCREASED TO 15;
-AND THE INTERSPIKE INTERVAL TO ELICIT ONE-TO-ONE FOR GENERATING POST-INHIBITORY-BURST-RESPONSE
-
-LOG JANUARY 2016: SETTING SINGLE NEURON BEHAVIOUR OF TCR, TRN, IN PRIOR TO BUILDING POPULATIONS
-LOG 28TH DECEMBER 2015: BEING TESTED WITH THALAMIC FIRING MODES PAPER RESULTS AND OBSERVATIONS: BASAB
-
-LOG: 7TH AUGUST 2015
-THE PARAMETETCR OF THE EARLIER MODEL IS CHANGED ACCORDING TO THE ONES WHEN WORKING WITH RAHMI -  MAINLY THE I-OFFSET IS CHANGED TO 0, BECAUSE WHEN THE NEURONS ARE USED
-WITHIN A NETWORK, THEIR INPUT CURRENTS WILL BE PROVIDED BY OTHER NEURONS WITHIN THE NETWORK AND HENCE THEY WOULD NOT NEED AN EXPLICIT DRIVER CURRENT.
-ALSO, THE U VARIABLES ARE MADE NON-ZERO, WHICH MAKES A DIFFERENCE TO THE INITIAL CONDITION OF THE PLOT BUT AN INSIGNIFICANT CHANGE.
-FURTHER, THE TAU PARAMETERS ARE INCREASED, WHICH DOES NOT MAKE ANY VISIBLE DIFFERENCE IN THE CASE OF INHIBITORY SPIKE SOURCE,
-BUT IN THE CASE OF AN EXCITATORY SPIKE SOURCE, THE RATE OF SPIKING IN ALL OF THE NEURONS INCREASES.
 """
 
 # !/usr/bin/python
