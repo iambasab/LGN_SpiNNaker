@@ -1,4 +1,4 @@
-function [fr, vismat]=fun_stft(Vm, Fc1, Fc2)
+function [fr, vismat]=fun_stft(Vm, Fc1, Fc2, locut, hicut, TimeInt)
  
         fs=1000;
         N   = 10;  % Order
@@ -8,7 +8,7 @@ function [fr, vismat]=fun_stft(Vm, Fc1, Fc2)
         
         [B,A]=sos2tf(Hd.sosMatrix,Hd.Scalevalues);
         Data = filtfilt(B,A,Vm);
-              
+        Data = Data(locut:TimeInt:hicut);     
         %% STFT
         
         time_window_len=1000;%% 

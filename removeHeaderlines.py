@@ -22,15 +22,15 @@ num_header_lines = 5 ### DO NOT CHANGE WHEN RUNNING ON DATA GENERATED WITH SPINN
 loop=0
 print('now working on spike source array inputs')
 
-while loop < 1:
+while loop < 2:
     loop = loop+1
     print loop
     
-    n= 1  #input('enter number of simulation')
+    n= 2  #input('enter number of simulation')
     f= 8   #input('enter frequency of simulation')
     foldername="Sim%d_%dhz_0916" % (n,f)
     
-    outfolderpath=('exp%dhz/Sim%d' %(f,n))
+#    outfolderpath=('exp%dhz/Sim%d' %(f,n)) ## For final data collection and storing in specific folders pre-created
     ######################################
     ######################################
     ######------------THALAMIC RELAY NEURONS-----------------
