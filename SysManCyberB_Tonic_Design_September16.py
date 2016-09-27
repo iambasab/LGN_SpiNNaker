@@ -1,5 +1,11 @@
 """
+LOG BASAB 26-27 SEP:
+TESTING THIS TO OBSERVE MODEL BEHAVIOUR WITH CHANGING PARAMTERS AND EFFECT OF ID.
+AFTER THE FILES ARE SAVED, NEED TO RUN THE VERSION V0.1 OF VISUALISING CODE TO OBSERVE THE MEAN BEHAVIOUR OF THE POPULATION.
 
+ISSUES WITH 1000 NEURONS: SO ALL SIMULATIONS ARE MADE WITH A TOTAL OF 100 (OR IN 100S) NEURONS
+ISSUES WITH TIME RECORDING OF SPIKES: FOR THE MOMENT, WE DO NOT OBSERVE SPIKE SOURCE TRAIN.
+NOT RECORDING PROJECTIONS AT THE MOMENT.
 """
 
 # !/usr/bin/python
@@ -17,10 +23,10 @@ p2=[0.07, 0.11, 0.15, 0.2, 0.25]
 
 
 
-TotalDuration=10000
-TimeInt=1
+TotalDuration=2000
+TimeInt=1/0.1
 loop=0
-while loop<1:
+while loop<2:
     print ('WE ARE IN LOOP:\n')
     print loop
     
@@ -111,11 +117,17 @@ while loop<1:
 
 
     ''' PERIODIC SPIKE TRAIN INPUT: 23Hz: 44msec isi; 19.2 Hz: 52 msec isi; 15 Hz:67 msec isi; 11Hz: 91 msec isi; 8 Hz: 125 msec isi; 4.5 Hz: 223 msec isi; 3 Hz: 333msec isi'''
+## ORIGINAL SIMULATION FOR 10 SECONDS AND WITH NUMBER OF SIMULATIONS PREFERABLY AT 20 BUT AT LEAST 10
+#    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourceArray, {'spike_times': [i for i in range(1500,8000,125)]}, label='spike_source_ex')
+#    
+#    
+#    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(500,5000,125)]}, label='spike_source_inh')
 
-    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourceArray, {'spike_times': [i for i in range(1500,8000,125)]}, label='spike_source_ex')
+## TESTING FOR PARAMETER VARIATION WTIH TOTAL TIME OF SIMULATION 2OOO AND NUMBER OF LOOPS AS 5
+    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourceArray, {'spike_times': [i for i in range(700,1800,125)]}, label='spike_source_ex')
     
     
-    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(500,5000,125)]}, label='spike_source_inh')
+    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(250,1500,125)]}, label='spike_source_inh')
 
 
     ''' A-PERIODIC SPIKE TRAIN INPUT'''
@@ -146,7 +158,7 @@ while loop<1:
     projList.append(Proj2)
     
     '''TRN2TCR''' 
-    Proj3 = p.Projection(TRN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.07, weights=2, delays=3), target='inhibitory')
+    Proj3 = p.Projection(TRN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.15, weights=2, delays=3), target='inhibitory')
     projList.append(Proj3)
     
     '''TRN2TRN'''
@@ -155,7 +167,7 @@ while loop<1:
 
 
     '''IN2TCR'''
-    Proj5 = p.Projection(IN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.24, weights=6, delays=2), target='inhibitory')
+    Proj5 = p.Projection(IN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.16, weights=6, delays=2), target='inhibitory')
     projList.append(Proj5)
  
     '''IN2IN'''
@@ -171,13 +183,13 @@ while loop<1:
     TRN_pop.record_v()
 
     ''' RECORDING THE SPIKES'''
-    spike_source_ex.record()
-    spike_source_inh.record()
-	
+#    spike_source_ex.record()
+#    spike_source_inh.record()
+#	
 
-    TCR_pop.record()
-    IN_pop.record()
-    TRN_pop.record()
+#    TCR_pop.record()
+#    IN_pop.record()
+#    TRN_pop.record()
 
 
     p.run(TotalDuration)
@@ -187,17 +199,17 @@ while loop<1:
 	
 
     print ('SAVING THE FILES')
-    n= 1  #input('enter number of simulation')
+    n= 2  #input('enter number of simulation')
     f= 8   #input('enter frequency of simulation')
     foldername="Sim%d_%dhz_0916" % (n,f)
     TCR_pop.print_v('./'+foldername+'/TCRmempot_'+`loop`+'.dat')
     IN_pop.print_v('./'+foldername+'/INmempot_'+`loop`+'.dat')
     TRN_pop.print_v('./'+foldername+'/TRNmempot_'+`loop`+'.dat')
-    spike_source_ex.printSpikes('./'+foldername+'/spikesource_ex_'+`loop`+'.dat')
-    spike_source_inh.printSpikes('./'+foldername+'/spikesource_inh_'+`loop`+'.dat')
-    TCR_pop.printSpikes('./'+foldername+'/TCRspikes_'+`loop`+'.dat')
-    IN_pop.printSpikes('./'+foldername+'/INspikes_'+`loop`+'.dat')
-    TRN_pop.printSpikes('./'+foldername+'/TRNspikes_'+`loop`+'.dat')
+#    spike_source_ex.printSpikes('./'+foldername+'/spikesource_ex_'+`loop`+'.dat')
+#    spike_source_inh.printSpikes('./'+foldername+'/spikesource_inh_'+`loop`+'.dat')
+#    TCR_pop.printSpikes('./'+foldername+'/TCRspikes_'+`loop`+'.dat')
+#    IN_pop.printSpikes('./'+foldername+'/INspikes_'+`loop`+'.dat')
+#    TRN_pop.printSpikes('./'+foldername+'/TRNspikes_'+`loop`+'.dat')
     print('SAVED THE FILES \n \n \n')
     
 
