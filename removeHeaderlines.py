@@ -26,7 +26,7 @@ while loop < 2:
     loop = loop+1
     print loop
     
-    n= 2  #input('enter number of simulation')
+    n= 11 #input('enter number of simulation')
     f= 8   #input('enter frequency of simulation')
     foldername="Sim%d_%dhz_0916" % (n,f)
     

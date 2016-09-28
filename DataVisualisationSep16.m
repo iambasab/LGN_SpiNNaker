@@ -27,7 +27,7 @@ clear all
 clc
 % close all
 display ('Simulation 8 Hz')
-f=8; n_sim=1; n_loop=2;
+f=8; n_sim=11; n_loop=2;
 
 
 
@@ -123,11 +123,11 @@ while counter < 3
     hold on,
     switch counter
         case 1
-            plot(meanM(1,locut:TimeInt:hicut),'m','linewidth',1)
+            plot(meanM(1,locut:TimeInt:hicut),'--m','linewidth',1)
         case 2
-            plot(meanM(1,locut:TimeInt:hicut),'g','linewidth',1)
+            plot(meanM(1,locut:TimeInt:hicut),'--g','linewidth',1)
         case 3
-            plot(meanM(1,locut:TimeInt:hicut),'c','linewidth',1)
+            plot(meanM(1,locut:TimeInt:hicut),'--c','linewidth',1)
     end
     
     Fs = 1000;

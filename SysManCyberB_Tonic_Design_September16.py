@@ -1,4 +1,7 @@
 """
+LOG 28TH SEP BASAB: SIMULATIONS 1-10 TESTING WITH VARYING PROBABILITITES IN THE NEGATIVE PATHWAYS OF THE POPULATIONS.
+SIMULATION 11 TRYING TO RECORD SINGLE NEURON BEHAVIOUR WHEN CONNECTED AS NETWORK - TO CONTINUE.
+
 LOG BASAB 26-27 SEP:
 TESTING THIS TO OBSERVE MODEL BEHAVIOUR WITH CHANGING PARAMTERS AND EFFECT OF ID.
 AFTER THE FILES ARE SAVED, NEED TO RUN THE VERSION V0.1 OF VISUALISING CODE TO OBSERVE THE MEAN BEHAVIOUR OF THE POPULATION.
@@ -106,10 +109,10 @@ while loop<2:
 
     '''DEFINING THE POPULATIONS'''
     p.set_number_of_neurons_per_core("IZK_curr_exp", 100)
-    scale_fact = 10
-    NumCellsTCR = 5*scale_fact
+    scale_fact = 1
+    NumCellsTCR = 1*scale_fact
     NumCellsIN = 1*scale_fact
-    NumCellsTRN = 4*scale_fact
+    NumCellsTRN = 1*scale_fact
     TCR_pop = p.Population(NumCellsTCR, p.IZK_curr_exp, TCR_cell_params, label='TCR_pop')
     IN_pop = p.Population(NumCellsIN, p.IZK_curr_exp, IN_cell_params, label='IN_pop')
     TRN_pop = p.Population(NumCellsTRN, p.IZK_curr_exp, TRN_cell_params, label='TRN_pop')
@@ -139,40 +142,40 @@ while loop<2:
     # DEFINING THE PROJECTION AND WEIGHT PARAMETERS
     projList=list()
     
-    tcr_weights = 6
+    tcr_weights = 10
     in_weights = 6
     
     
     
     '''Source2TCR'''
-    Proj0 = p.Projection(spike_source_ex, TCR_pop, p.FixedProbabilityConnector(p_connect=0.07, weights=tcr_weights, delays=5), target='excitatory')
+    Proj0 = p.Projection(spike_source_ex, TCR_pop, p.FixedProbabilityConnector(p_connect=1, weights=tcr_weights, delays=5), target='excitatory')
     projList.append(Proj0)
     
     '''Source2IN'''
-    Proj1 = p.Projection(spike_source_inh, IN_pop, p.FixedProbabilityConnector(p_connect=0.47, weights=in_weights, delays=5), target='excitatory')
+    Proj1 = p.Projection(spike_source_inh, IN_pop, p.FixedProbabilityConnector(p_connect=1, weights=in_weights, delays=5), target='excitatory')
     projList.append(Proj1)
 
 
     '''TCR2TRN'''
-    Proj2 = p.Projection(TCR_pop, TRN_pop, p.FixedProbabilityConnector(p_connect=0.35, weights=4, delays=3), target='excitatory')
+    Proj2 = p.Projection(TCR_pop, TRN_pop, p.FixedProbabilityConnector(p_connect=1, weights=6, delays=3), target='excitatory')
     projList.append(Proj2)
     
     '''TRN2TCR''' 
-    Proj3 = p.Projection(TRN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.15, weights=2, delays=3), target='inhibitory')
-    projList.append(Proj3)
+#    Proj3 = p.Projection(TRN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.07, weights=2, delays=3), target='inhibitory')
+#    projList.append(Proj3)
     
     '''TRN2TRN'''
-    Proj4 = p.Projection(TRN_pop, TRN_pop, p.FixedProbabilityConnector(p_connect=0.15, weights=2, delays=1), target='inhibitory')
-    projList.append(Proj4)
+#    Proj4 = p.Projection(TRN_pop, TRN_pop, p.FixedProbabilityConnector(p_connect=0.15, weights=2, delays=1), target='inhibitory')
+#    projList.append(Proj4)
 
 
     '''IN2TCR'''
-    Proj5 = p.Projection(IN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.16, weights=6, delays=2), target='inhibitory')
-    projList.append(Proj5)
- 
-    '''IN2IN'''
-    Proj6  = p.Projection(IN_pop, IN_pop, p.FixedProbabilityConnector(p_connect=0.24, weights=2, delays=1), target='inhibitory')
-    projList.append(Proj6)
+#    Proj5 = p.Projection(IN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.24, weights=6, delays=2), target='inhibitory')
+#    projList.append(Proj5)
+# 
+#    '''IN2IN'''
+#    Proj6  = p.Projection(IN_pop, IN_pop, p.FixedProbabilityConnector(p_connect=0.24, weights=2, delays=1), target='inhibitory')
+#    projList.append(Proj6)
 
     # RECORDING THE MEMBRANE POTENTIAL
     
@@ -199,7 +202,7 @@ while loop<2:
 	
 
     print ('SAVING THE FILES')
-    n= 2  #input('enter number of simulation')
+    n= 11  #input('enter number of simulation')
     f= 8   #input('enter frequency of simulation')
     foldername="Sim%d_%dhz_0916" % (n,f)
     TCR_pop.print_v('./'+foldername+'/TCRmempot_'+`loop`+'.dat')
