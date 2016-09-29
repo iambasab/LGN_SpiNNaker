@@ -26,10 +26,10 @@ p2=[0.07, 0.11, 0.15, 0.2, 0.25]
 
 
 
-TotalDuration=2000
+TotalDuration=4000
 TimeInt=1/0.1
 loop=0
-while loop<2:
+while loop<1:
     print ('WE ARE IN LOOP:\n')
     print loop
     
@@ -127,10 +127,10 @@ while loop<2:
 #    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(500,5000,125)]}, label='spike_source_inh')
 
 ## TESTING FOR PARAMETER VARIATION WTIH TOTAL TIME OF SIMULATION 2OOO AND NUMBER OF LOOPS AS 5
-    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourceArray, {'spike_times': [i for i in range(700,1800,125)]}, label='spike_source_ex')
+    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourceArray, {'spike_times': [i for i in range(700,3800,100)]}, label='spike_source_ex')
     
     
-    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(250,1500,125)]}, label='spike_source_inh')
+    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(250,3500,100)]}, label='spike_source_inh')
 
 
     ''' A-PERIODIC SPIKE TRAIN INPUT'''
@@ -140,41 +140,41 @@ while loop<2:
 
 
     # DEFINING THE PROJECTION AND WEIGHT PARAMETERS
-    projList=list()
+#    projList=list()
     
-    tcr_weights = 10
+    tcr_weights = 6
     in_weights = 6
     
     
     
     '''Source2TCR'''
     Proj0 = p.Projection(spike_source_ex, TCR_pop, p.FixedProbabilityConnector(p_connect=1, weights=tcr_weights, delays=5), target='excitatory')
-    projList.append(Proj0)
+#    projList.append(Proj0)
     
     '''Source2IN'''
     Proj1 = p.Projection(spike_source_inh, IN_pop, p.FixedProbabilityConnector(p_connect=1, weights=in_weights, delays=5), target='excitatory')
-    projList.append(Proj1)
+#    projList.append(Proj1)
 
 
     '''TCR2TRN'''
-    Proj2 = p.Projection(TCR_pop, TRN_pop, p.FixedProbabilityConnector(p_connect=1, weights=6, delays=3), target='excitatory')
-    projList.append(Proj2)
+    Proj2 = p.Projection(TCR_pop, TRN_pop, p.FixedProbabilityConnector(p_connect=1, weights=6, delays=10), target='excitatory')
+#    projList.append(Proj2)
     
     '''TRN2TCR''' 
-#    Proj3 = p.Projection(TRN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.07, weights=2, delays=3), target='inhibitory')
+    Proj3 = p.Projection(TRN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=1, weights=6, delays=10), target='inhibitory')
 #    projList.append(Proj3)
     
     '''TRN2TRN'''
-#    Proj4 = p.Projection(TRN_pop, TRN_pop, p.FixedProbabilityConnector(p_connect=0.15, weights=2, delays=1), target='inhibitory')
+    Proj4 = p.Projection(TRN_pop, TRN_pop, p.FixedProbabilityConnector(p_connect=1, weights=6, delays=10), target='inhibitory')
 #    projList.append(Proj4)
 
 
     '''IN2TCR'''
-#    Proj5 = p.Projection(IN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=0.24, weights=6, delays=2), target='inhibitory')
+    Proj5 = p.Projection(IN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=1, weights=6, delays=10), target='inhibitory')
 #    projList.append(Proj5)
 # 
 #    '''IN2IN'''
-#    Proj6  = p.Projection(IN_pop, IN_pop, p.FixedProbabilityConnector(p_connect=0.24, weights=2, delays=1), target='inhibitory')
+    Proj6  = p.Projection(IN_pop, IN_pop, p.FixedProbabilityConnector(p_connect=1, weights=6, delays=10), target='inhibitory')
 #    projList.append(Proj6)
 
     # RECORDING THE MEMBRANE POTENTIAL
