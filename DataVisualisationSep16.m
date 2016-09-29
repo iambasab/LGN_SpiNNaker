@@ -25,13 +25,13 @@
 
 clear all
 clc
-% close all
+close all
 display ('Simulation 8 Hz')
-f=8; n_sim=11; n_loop=2;
+f=8; n_sim=11; n_loop=1;
 
 
 
-TotalDuration=2000; % Total duration of simulation is 1000 msec
+TotalDuration=4000; % Total duration of simulation is 1000 msec
 TimeInt=1/0.1; %%Samplint time is 0.1 millisecond
 TotalTimeSteps = TotalDuration * TimeInt; %Total time steps is 10000
 
@@ -47,11 +47,14 @@ locut=100;
 hicut=TotalTimeSteps-100;
 
 %% Number of neurons in each cell population:
-scale_fact=10;
-tcrpop=5*scale_fact;
-inpop=1*scale_fact;
-trnpop=4*scale_fact;
+% scale_fact=10;
+% tcrpop=5*scale_fact;
+% inpop=1*scale_fact;
+% trnpop=4*scale_fact;
 
+tcrpop=1;
+inpop=1;
+trnpop=1;
 
 lgnCellPopNum=3;
 counter=0;
@@ -150,10 +153,10 @@ while counter < 3
     %% THIS IS THE ORIGINAL CODE TO LOOK INTO THE POWER SPECTRA AS A WHOLE AND
     %%ALSO FOR THE WHOLE MATRIX.
         for ms=1:size(M,1)
-            filtData(ms,:) = filtfilt(B,A,M(ms,:));
-            hpopts = psdopts(hp,filtData(ms,locut:TimeInt:hicut));
+            filtData(ms,:) = filtfilt(B,A,M(ms,locut:TimeInt:hicut));
+            hpopts = psdopts(hp,filtData(ms,:));
             set(hpopts,'Fs',Fs,'NFFT',NFFT,'Normalized',Normalised)
-            hpsd = psd(hp,filtData(ms,locut:TimeInt:hicut),hpopts);
+            hpsd = psd(hp,filtData(ms,:),hpopts);
             Pmat(ms,:)=hpsd.Data';
         end
         meanP=mean(Pmat,1);
@@ -181,11 +184,11 @@ while counter < 3
         figure(2), hold on, 
         switch counter
             case 1
-                plot(mean_filtdata(locut:TimeInt:hicut), 'm', 'linewidth',1)
+                plot(mean_filtdata, 'm', 'linewidth',1)
             case 2
-                plot(mean_filtdata(locut:TimeInt:hicut), 'g', 'linewidth',1)
+                plot(mean_filtdata, 'g', 'linewidth',1)
             case 3
-                plot(mean_filtdata(locut:TimeInt:hicut), 'c', 'linewidth',1)
+                plot(mean_filtdata, 'c', 'linewidth',1)
         end
     %     plot(locut:hicut,filtData(:,1:end))
     
@@ -193,22 +196,22 @@ while counter < 3
     % %     plot(locut:hicut,mean_filtdata,'g','linewidth',1)
     
         % STFT
-        x=Fc1; y=Fc2;
-        [fr, vismat]=fun_stft(meanM, x, y, locut, hicut, TimeInt);
-        figure, imagesc([],fr((4*x+1):(4*y+1)),vismat((4*x+1):(4*y+1),2:end));
-        switch counter
-            case 1
-                title('TCR')
-            case 2
-                title('IN')
-            case 3
-                title('TRN')
-        end
-            
-            xlabel('Time windows','Fontsize',14);
-            ylabel('frequency(Hz)','Fontsize',14);
-            axis('xy')
-            set(gca,'Fontsize',12),
-            ylim([x y])
+%         x=Fc1; y=Fc2;
+%         [fr, vismat]=fun_stft(meanM, x, y, locut, hicut, TimeInt);
+%         figure, imagesc([],fr((4*x+1):(4*y+1)),vismat((4*x+1):(4*y+1),2:end));
+%         switch counter
+%             case 1
+%                 title('TCR')
+%             case 2
+%                 title('IN')
+%             case 3
+%                 title('TRN')
+%         end
+%             
+%             xlabel('Time windows','Fontsize',14);
+%             ylabel('frequency(Hz)','Fontsize',14);
+%             axis('xy')
+%             set(gca,'Fontsize',12),
+%             ylim([x y])
             
 end
