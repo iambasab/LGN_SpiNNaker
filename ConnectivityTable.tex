@@ -1,7 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
 \usepackage{amsmath}
+\usepackage{tcolorbox}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -36,9 +36,9 @@ IN & IN & 0.24 & 2 & 1 \\
 \end{table}
 
 \begin{table}
-\begin{tabular}{||l|c|c|c|c||}
+\begin{tabular}{||l|c|c|c|c|c|}
 \hline \\
-Simulation No & 1 & 2 & 3 & 4 & 5 \\
+\mbox{Simulation No} & 1 & 2 & 3 & 4 & 5 \\
 \hline \\
 \mbox{TRN to TCR} ($P_1$) & 0.07 & 0.11 & 0.15 & 0.2 & 0.24 \\
 \mbox{IN to TCR} ($P_2$)  & 0.24 & 0.2 & 0.16 & 0.11 & 0.07 \\
@@ -62,6 +62,22 @@ All observations in Sec.~\ref{sec:11} hold except that the IPSPs corresponding t
 The network consists of 1 neuron of each type in the LGN. Spike sources are also one of each type. the time interval for the current set of simulation is set to 4000. Why? because, firstly, with such a small network and for periodic input of say 4.5 hz, it helps to observe over 2 seconds, when there is 4 spikes in one second and 5 spikes in the next second, which then gives an average of 4.5. To observe consistency of this behaviour over a consecutive period of 2 seconds, the total duration is set to 4 msec. 
 
 Time step is maintained at 0.1 msec.
+
+The parameter settings are as follows:
+\begin{tcolorbox}
+\begin{itemize}
+\item tcr-weights = 6
+\item in-weights = 0  
+  \item Source2TCR: p-connect=1, weights=tcr-weights, delays=5\\
+  \item Source2IN: p-connect=1, weights=in-weights, delays=5 \\
+   \item TCR2TRN: p-connect=1, weights=6, delays= var1 (feed-forward)\\
+ \item  TRN2TCR: p-connect=1, weights=6, delays=var2 (feed-back)\\
+ \item  TRN2TRN: p-connect=1, weights=6, delays=var3 (recurrent feedback) \\\\\\
+ 
+ \item  IN2TCR: p-connect=1, weights=0, delays=10 \\
+ \item  IN2IN: -connect=1, weights=6, delays=10
+\end{itemize}
+\end{tcolorbox}
 
 \subsection{Experiment2.1}
 \label{sec:21}
