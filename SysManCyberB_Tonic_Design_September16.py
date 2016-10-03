@@ -127,10 +127,10 @@ while loop<1:
 #    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(500,5000,125)]}, label='spike_source_inh')
 
 ## TESTING FOR PARAMETER VARIATION WTIH TOTAL TIME OF SIMULATION 2OOO AND NUMBER OF LOOPS AS 5
-    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourceArray, {'spike_times': [i for i in range(700,3800,100)]}, label='spike_source_ex')
+    spike_source_ex = p.Population(NumCellsTCR, p.SpikeSourceArray, {'spike_times': [i for i in range(700,3800,91)]}, label='spike_source_ex')
     
     
-    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(250,3500,100)]}, label='spike_source_inh')
+    spike_source_inh = p.Population(NumCellsIN, p.SpikeSourceArray, {'spike_times': [i for i in range(250,3500,91)]}, label='spike_source_inh')
 
 
     ''' A-PERIODIC SPIKE TRAIN INPUT'''
@@ -143,7 +143,7 @@ while loop<1:
 #    projList=list()
     
     tcr_weights = 6
-    in_weights = 6
+    in_weights = 0
     
     
     
@@ -161,7 +161,7 @@ while loop<1:
 #    projList.append(Proj2)
     
     '''TRN2TCR''' 
-    Proj3 = p.Projection(TRN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=1, weights=6, delays=10), target='inhibitory')
+    Proj3 = p.Projection(TRN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=1, weights=6, delays=50), target='inhibitory')
 #    projList.append(Proj3)
     
     '''TRN2TRN'''
@@ -170,7 +170,7 @@ while loop<1:
 
 
     '''IN2TCR'''
-    Proj5 = p.Projection(IN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=1, weights=6, delays=10), target='inhibitory')
+    Proj5 = p.Projection(IN_pop, TCR_pop, p.FixedProbabilityConnector(p_connect=1, weights=0, delays=10), target='inhibitory')
 #    projList.append(Proj5)
 # 
 #    '''IN2IN'''
@@ -237,6 +237,3 @@ while loop<1:
     	
     
     p.end()
-
-
-

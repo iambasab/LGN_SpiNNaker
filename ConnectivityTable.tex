@@ -6,7 +6,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \author{Basabdatta Sen Bhattacharya}
-\title{Tables for SysManCyber}
+\title{ENTRAINMENT OF THE LATERAL GENICULATE NUCLEUS BY PERIODIC INPUTS WITHIN THE ALPHA BAND}
 \begin{document}
 Log on the 16th September:\\
 Periodic train of spikes at 3 Hz is provided to both TCR and IN. The simulation is run for a total of 10 seconds at a resolution of 1 msec (the 10 second scaling up from .spynnaker.cfg is removed for this simulation). The total number of neurons in this population is 100 with a 5:1:4 ratio of the thalamic cells i.e. TCR:IN:TRN respectively.
@@ -57,10 +57,39 @@ For experiments 1 and 2 (see first and second columns of Table~\ref{tab:2}), the
 \label{sec:12}
 All observations in Sec.~\ref{sec:11} hold except that the IPSPs corresponding to the IN are not observed in the TCR output once it starts receiving external inputs from the retina.
 
-\section{For second set of simulation}
+\section{For second set of experiments}
 \label{sec:2}
-The 
+The network consists of 1 neuron of each type in the LGN. Spike sources are also one of each type. the time interval for the current set of simulation is set to 4000. Why? because, firstly, with such a small network and for periodic input of say 4.5 hz, it helps to observe over 2 seconds, when there is 4 spikes in one second and 5 spikes in the next second, which then gives an average of 4.5. To observe consistency of this behaviour over a consecutive period of 2 seconds, the total duration is set to 4 msec. 
 
+Time step is maintained at 0.1 msec.
+
+\subsection{Experiment2.1}
+\label{sec:21}
+Excitatory input: 700 to 3800 msec at resolution of 125msec
+IN population not receiving any input and no efferents to TCR.
+(Inhibitory input: 250 to 3500 msec at a resolution of 125msec)
+
+When the delays in the TCR-TRN loop are set to 10, the frequency plots reflect the input frequency and the amplitude of the dominant frequency and the harmonics have a descending order; the TRN power amplitudes in the dominant frequency is less than that of the TCR. This is captured in Figures 1, 1a and 1b in the ../matlabfiles/Figures/ folder.
+
+If the TRN-TCR feedback delay is increased to 50, while the other two are the same i.e. 10, The dominant frequency in both TCR and TRN shifts left slightly, and the magnitude drops significantly relative to the second harmonic. The harmonic frequencies are not disturbed. This is captured in Figures 2a and 2b. On further increasing the delay to 100, the input loses its entrainment effect of the output and the frequency drops significantly to the theta band owing to the suppression of the TCR spikes at alternative intervals for the 8 Hz input. This behaviour is recorded in figures 2c, 2d and 2e.
+
+Now, the TRN recurrent feedback loop delay is also increased to 100. The TRN starts to show harmonics however the TCR is still within the theta band. Figures 3a and 3b record this behaviour.
+
+If now the TCR to TRN delay is also increased to 100, the TCR oscillates within the alpha band with harmonics, however, the TRN is now suppressed and oscillates within the theta band. This is recorded in the Figures 4a and 4b.
+
+\subsection{Experiment2.2}
+\label{sec:22}
+Do we see a similar behaviour for other frequency inputs within the alpha band?
+We start off with 11 Hz and keep the conditions same as in \ref{sec:21}. The figures corresponding to delay in just the TRN-TCR feedback path is recorded in Figures 6a and 6b. Adding the recurrent delay in the TRN is recorded in Figures 5a and 5b. Delay in all three pathways is recorded in fig. 7a and 7b. 
+All delays are 	100. 
+Interestingly, the complete loss of harmonics and shift to the theta band is no more observed, however, there is a drop in the power within the TRN.
+
+Putting the delays to 50: does it change the behaviour?
+Nope :
+(a) With all delays included in the circuit, there is a shift in the TRN dominant frequency to within the theta band. This is recorded in figures 8a and 8b.
+(b) with the negative feedback from TRN-TCR and recurrent TRN feedback, both TCR and TRN dominant frequency slows down and is recorded in figures 9a and 9b.
+(c) With delay only in the TRN-TCR feedback path, the behaviour is recorded in figures 10a and 10b. The second and third harmonics are intact for the TCR but there is minimal power in the fundamental frequency.
+The TRN has negligible power but does show harmonics.
 
 
 \end{document}
