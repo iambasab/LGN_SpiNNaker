@@ -12,12 +12,6 @@
 % NEXT WE REMOVE THE IN.
 % AND FIRST TEST WITH IMPULSE INPUT STRENGTH 25.
 
-%% LOG OCTOBER 2016: 4TH REVISION OF PAPER - AND REVISITING THE RESULTS 
-% CORRESPONDING TO VARYING CONNECTIVITY PARAMETERS - TABLE 3 IN PAPER. MADE
-% A FEW CHANGES TO VISUALISATION AND GENERATION OF DATA: (1) SIMULATION
-% TIME IS 40 SECONDS WITH CUT OFF AT 10 AND 30 SECONDS.
-%% LOG MARCH 2016: FIRST REVISION OF THE FRONTIERS IN COMPUTATIONAL
-%% NEUROSCIENCE PAPER
 % THE CODE IS COPYRIGHT OF BASABDATTA SEN BHATTACHARYA; PLEASE ACKNOWLEDGE THE
 % AUTHOR IF USING THE CODE IN PART OR FULL.
 
@@ -164,7 +158,7 @@ for freq = 1:length(freqrange)
         %% EVENT INPUTS AT DIFFERENT FREQUENCIES
         Vimpulse = zeros(1, length(V_ret));
         % ************************************************************************
-        Vimpulse(int_hz:int_hz:end)=20;%%   STRENGHT OF INPUT %% STRENGTH OF INPUT <<<<<<<<<<<<<---*****************
+        Vimpulse(int_hz:int_hz:end)=20;%%   STRENGTH OF INPUT %% STRENGTH OF INPUT <<<<<<<<<<<<<---*****************
         % ***************************************************************************
         V_eventinp = V_ret + Vimpulse;
         
